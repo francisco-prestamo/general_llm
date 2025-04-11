@@ -1,4 +1,5 @@
 from fireworks.client import Fireworks
+from scipy.spatial.distance import cosine
 import os
 import numpy as np
 from sklearn.preprocessing import normalize
@@ -35,6 +36,9 @@ def vectorizar_texto(model, promt) -> np.ndarray:
     )
     vector = np.array(response.data[0].embedding)
     return normalize([vector])[0]  # Normalización L2
+
+def CompareVectors(vector1, vector2):
+    return cosine(vector1, vector2)
 
 def main():
     # Configuración
